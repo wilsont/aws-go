@@ -10,6 +10,7 @@ help: ## this help
 
 build:
 	GOOS=linux go build main.go && rm function.zip && zip function.zip main
-
+create: 
+	aws lambda create-function --function-name testHandler --runtime go1.x --zip-file fileb://function.zip --handler main --role arn:aws:iam::${AWS_ACCOUNT_ID}:role/lambda-ex	
 update: 
 	aws lambda update-function-code --function-name testHandler --zip-file fileb://function.zip
